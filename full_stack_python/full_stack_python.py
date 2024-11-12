@@ -56,6 +56,19 @@ app.add_page(
     
 )
 
+app.add_page(
+    blog.blog_post_detail_page, 
+    route="/blog/[blog_id]",
+    on_load=blog.BlogPostState.get_post_detail
+)
+
+app.add_page(
+    blog.blog_post_edit_page, 
+    route="/blog/[blog_id]/edit",
+    on_load=blog.BlogPostState.get_post_detail
+)
+
+
 app.add_page(contact.contact_page, 
              route=navigation.routes.CONTACT_US_ROUTE)
 app.add_page(

@@ -39,10 +39,7 @@ class ContactState(rx.State):
         
     def list_entries(self):
         with rx.session() as session:
-            entries = session.exec(
-                select(ContactEntryModel)
-                ).all()
-            print(entries)
-            self.entries = entries
+            query = select(ContactEntryModel)
+            self.entries = session.exec(query).all()
             
         

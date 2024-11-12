@@ -28,7 +28,6 @@ def blog_post_list_item(post: model.BlogPostModel):
         padding='1em'
     )
     
-    
 # def foreach_callback(text):
 #     return rx.box(rx.text(text))    
 
@@ -36,6 +35,10 @@ def blog_post_list_page() -> rx.Component:
     return base_page(
         rx.vstack(
             rx.heading("Blog Posts", size="5"),
+            rx.link(
+                rx.button("New Post"),
+                href=navigation.routes.BLOG_POST_ADD_ROUTE
+            ),
             # rx.foreach(['abc', 'abc', 'abc'], 
             # foreach_callback),
             rx.foreach(state.BlogPostState.posts, 
@@ -45,3 +48,4 @@ def blog_post_list_page() -> rx.Component:
             min_height="85vh",
         )
     )
+ 
