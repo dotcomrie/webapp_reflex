@@ -43,7 +43,7 @@ class BlogPostState(rx.State):
                 return
             result = session.exec(
                 select(BlogPostModel).where(
-                    BlogPostModel.id == self.blog_post_id
+                    (BlogPostModel.id == self.blog_post_id)
                 )
             ).one_or_none()
             self.post = result
@@ -58,7 +58,10 @@ class BlogPostState(rx.State):
     def load_posts(self):
         with rx.session() as session:
             result = session.exec(
-                select(BlogPostModel)
+                select(BlogPostModel).where(
+                    (BlogPostModel.publish_active == True) &
+                    (BlogPostModel.publish_date < datetime.now())
+                )
             ).all()
             self.posts = result
         # return
