@@ -1,4 +1,4 @@
-import reflex as rx
+import reflex as rx 
 
 from ..ui.base import base_page
 
@@ -17,14 +17,15 @@ def blog_post_detail_page() -> rx.Component:
         rx.hstack(
             rx.heading(state.BlogPostState.post.title, size="9"),
             edit_link_el,
-            align="end"
+            align='end'
         ),
-            rx.text(
-                state.BlogPostState.post.content,
-                white_space = "pre-wrap"
-            ),
-            spacing="5",
-            align="center",
-            min_height="85vh",
+        rx.text(state.BlogPostState.post.publish_date),
+        rx.text(
+            state.BlogPostState.post.content,
+            white_space = "pre-wrap"
+        ),
+        spacing="5",
+        align="center",
+        min_height="85vh",
         )
     return base_page(my_child)
