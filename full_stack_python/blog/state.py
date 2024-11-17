@@ -44,6 +44,7 @@ class BlogPostState(rx.State):
             result = session.exec(
                 select(BlogPostModel).where(
                     (BlogPostModel.id == self.blog_post_id)
+
                 )
             ).one_or_none()
             self.post = result
@@ -55,12 +56,16 @@ class BlogPostState(rx.State):
         # return
     
     
-    def load_posts(self):
+    def load_posts(self, published_only=True):
+        if published_only:
+            lookup_args = (
+                (BlogPostModel.publish_active == True) &
+                (BlogPostModel.publish_date < datetime.now())
+            )
         with rx.session() as session:
             result = session.exec(
                 select(BlogPostModel).where(
-                    (BlogPostModel.publish_active == True) &
-                    (BlogPostModel.publish_date < datetime.now())
+                    *lookup_args
                 )
             ).all()
             self.posts = result
