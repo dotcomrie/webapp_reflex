@@ -16,6 +16,7 @@ BlogPostModel):
     post_detail_url = f"{root_path}/{post_id}"
     return rx.link(
         child,
+        rx.heading("by ", post.userinfo.email),
         href=post_detail_url
     )
 

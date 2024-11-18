@@ -2,11 +2,12 @@ from datetime import datetime
 from typing import Optional, List
 import reflex as rx 
 
+import sqlalchemy
 from sqlmodel import select
 
 from .. import navigation
 from ..auth.state import SessionState
-from ..models import BlogPostModel
+from ..models import BlogPostModel, UserInfo
 
 
 
@@ -42,16 +43,16 @@ class BlogPostState(SessionState):
             if self.blog_post_id == "":
                 self.post = None
                 return
-            result = session.exec(
-                select(BlogPostModel).where(
-                    (BlogPostModel.id == self.blog_post_id)
-
-                )
-            ).one_or_none()
-            if result.userinfo:
-                print("working")
-                # result.userinfo # db lookup
-            result.userinfo.user # db lookup
+            sql_statement = select(BlogPostModel).options(
+                sqlalchemy.orm.joinedload(BlogPostModel.
+                userinfo).joinedload(UserInfo.user)
+            ).where(
+                (BlogPostModel.id == self.blog_post_id)
+            )
+            result = session.exec(sql_statement).one_or_none()
+            # if result.userinfo: # db lookup
+            #     print("working")
+            # result.userinfo.user # db lookup
             self.post = result
             if result is None:
                 self.post_content = ""
@@ -69,7 +70,9 @@ class BlogPostState(SessionState):
             )
         with rx.session() as session:
             result = session.exec(
-                select(BlogPostModel).where(
+                select(BlogPostModel).options(
+                sqlalchemy.orm.joinedload(BlogPostModel.userinfo)
+                ).where(
                     *lookup_args
                 )
             ).all()
