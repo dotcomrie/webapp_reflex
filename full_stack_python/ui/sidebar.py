@@ -1,14 +1,13 @@
 import reflex as rx
 from reflex.style import toggle_color_mode
 
-from ..auth.state import SessionState
 from .. import navigation
 
 def sidebar_logout_item() -> rx.Component:
     return rx.box(
         rx.hstack(
             rx.icon("log-out"),
-            rx.text("Log out", size="4"),
+            rx.text("Logout", size="4"),
             width="100%",
             padding_x="0.5rem",
             padding_y="0.75rem",
@@ -23,7 +22,7 @@ def sidebar_logout_item() -> rx.Component:
                 "border-radius": "0.5em",
             },
         ),
-        on_click=SessionState.perform_logout,
+        on_click=navigation.NavState.to_logout,
         as_="button", # <button></button
         underline="none",
         weight="medium",
