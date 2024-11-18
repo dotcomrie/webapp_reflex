@@ -3,6 +3,9 @@ import reflex as rx
 from .sidebar import sidebar
 
 def base_dashboard_page(child: rx.Component, *args, **kwargs) -> rx.Component:
+    # print([type(x) for x in args])
+    if not isinstance(child,rx. Component):
+        child = rx.heading("this is not a valid child element")
     return rx.fragment(
         rx.hstack(
             sidebar(),
@@ -14,7 +17,9 @@ def base_dashboard_page(child: rx.Component, *args, **kwargs) -> rx.Component:
                 width="100%",
                 id="my-content-area-el",
             ),
+            
         ),
         # rx.color_mode.button(position="bottom-left"),
-        id="my-base-container"
+        # padding='10em',
+        # id="my-base-container"
     )

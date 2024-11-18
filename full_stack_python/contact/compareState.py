@@ -6,7 +6,7 @@ from sqlmodel import select
 
 
 from ..auth.state import SessionState
-from .model import ContactEntryModel
+# from ..models import ContactEntryModel
 
 class ContactState(SessionState):
     form_data: dict = {}

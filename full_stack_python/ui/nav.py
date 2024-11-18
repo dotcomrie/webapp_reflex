@@ -9,6 +9,7 @@ def navbar_link(text: str, url: str) -> rx.Component:
         rx.text(text, size="4", weight="medium"), href=url
     )
 
+
 def navbar() -> rx.Component:
     return rx.box(
         rx.desktop_only(
@@ -32,16 +33,11 @@ def navbar() -> rx.Component:
                     align_items="center",
                 ),
                 rx.hstack(
-                    navbar_link("Home", navigation.routes.
-                    HOME_ROUTE),
-                    navbar_link("About", navigation.routes.
-                    ABOUT_US_ROUTE),
-                    navbar_link("Blog", navigation.routes.
-                    BLOG_POSTS_ROUTE),
-                    navbar_link("Pricing", navigation.routes.
-                    PRICING_ROUTE),
-                    navbar_link("Contact", navigation.routes.
-                    CONTACT_US_ROUTE),
+                    navbar_link("Home", navigation.routes.HOME_ROUTE),
+                    navbar_link("About", navigation.routes.ABOUT_US_ROUTE),
+                    navbar_link("Blog", navigation.routes.BLOG_POSTS_ROUTE),
+                    navbar_link("Pricing", navigation.routes.PRICING_ROUTE),
+                    navbar_link("Contact", navigation.routes.CONTACT_US_ROUTE),
                     spacing="5",
                 ),
                 rx.hstack(
@@ -51,8 +47,7 @@ def navbar() -> rx.Component:
                             size="3",
                             variant="outline",
                         ),
-                        href=reflex_local_auth.routes.
-                        REGISTER_ROUTE
+                        href=reflex_local_auth.routes.REGISTER_ROUTE
                     ),
                     rx.link(
                         rx.button(
