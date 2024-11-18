@@ -1,11 +1,9 @@
 import reflex as rx
-
-from .. import navigation
 from ..ui.base import base_page
+from ..models import ContactEntryModel
+from . import form, state
 
-from . import form, state, model
-
-def contact_entry_list_item(contact: rx.Var):
+def contact_entry_list_item(contact: ContactEntryModel):
     return rx.box(
         rx.heading(contact.first_name),
         rx.text(contact.message),

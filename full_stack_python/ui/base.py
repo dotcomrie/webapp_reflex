@@ -17,7 +17,7 @@ def base_layout_component(child, *args, **kwargs) -> rx.Component:
         rx.logo(),
         rx.color_mode.button(position="bottom-left"),
         # padding='10em'
-        id="my-base-container"
+        # id="my-base-container"
     )
     
 def base_page(child: rx.Component, *args, **kwargs) -> rx.Component:

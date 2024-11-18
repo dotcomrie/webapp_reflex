@@ -1,7 +1,7 @@
 import reflex as rx
 import reflex_local_auth
 
-from .models import UserInfo
+from ..models import UserInfo
 
 from typing import Optional
 
