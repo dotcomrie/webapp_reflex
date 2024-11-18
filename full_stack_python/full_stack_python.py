@@ -24,7 +24,7 @@ class State(rx.State):
         self.label = val
         
     def did_click(self):
-        print("Hello world did click")
+        # print("Hello world did click")
         return rx.redirect(route=navigation.routes.ABOUT_US_ROUTE)
         
 def index() -> rx.Component:
