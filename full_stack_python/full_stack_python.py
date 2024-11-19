@@ -30,7 +30,15 @@ def index() -> rx.Component:
 
 
 
-app = rx.App()
+app = rx.App(
+    theme=rx.theme(
+        appearance="light",
+        has_background=True,
+        radius="large",
+        accent_color="teal",
+    )
+    
+)
 app.add_page(index,
         on_load=ArticlePublicState.load_posts
     )

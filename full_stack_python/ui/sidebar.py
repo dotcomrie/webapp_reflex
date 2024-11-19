@@ -76,7 +76,7 @@ def sidebar_dark_mode_toggle_item() -> rx.Component:
                 dark=rx.icon("sun"),
             ),
             rx.text(rx.color_mode_cond(
-                light="Turn dark mode on",
+                light="Turn  on",
                 dark="Turn light mode on",
             ), size="4"),
             width="100%",
